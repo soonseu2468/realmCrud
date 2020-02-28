@@ -6,7 +6,7 @@ import 'react-native-gesture-handler';
 
 let realm;
 
-export default class ViewAllUser extends React.Component {
+export default class viewTopic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,6 @@ export default class ViewAllUser extends React.Component {
     this.state = {
       FlatListItems: topic_details,
     };
-    //console.log(user_details)
   }
   ListViewItemSeparator = () => {
     return (
@@ -26,8 +25,7 @@ export default class ViewAllUser extends React.Component {
   };
 
   _onPressButton(title, subtitle, description, topic_id, image) {
-    //  Alert.alert((user_name),user_address);
-    this.props.navigation.navigate('List', {
+    this.props.navigation.navigate('topicDescription', {
 
       Title: title,
       Subtitle: subtitle,

@@ -5,14 +5,14 @@ import React from 'react';
 //For react-navigation 4.0+
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from './pages/HomeScreen';
-import RegisterUser from './pages/RegisterUser';
-import ViewAllUser from './pages/ViewAllUser';
-import ListUser from './pages/ListUser';
+import homeScreen from './pages/homeScreen';
+import addTopic from './pages/addTopic';
+import viewTopic from './pages/viewTopic';
+import topicDescription from './pages/topicDescription';
 
 const App = createStackNavigator({
-  HomeScreen: {
-    screen: HomeScreen,
+  homeScreen: {
+    screen: homeScreen,
     navigationOptions: {
       title: 'HomeScreen',
       headerStyle: { backgroundColor: '#3a59b7' },
@@ -20,8 +20,8 @@ const App = createStackNavigator({
     },
   },
 
-  ViewAll: {
-    screen: ViewAllUser,
+  viewTopic: {
+    screen: viewTopic,
     navigationOptions: {
       title: 'View All User',
       headerStyle: { backgroundColor: '#3a59b7' },
@@ -29,19 +29,19 @@ const App = createStackNavigator({
     },
   },
 
-  Register: {
-    screen: RegisterUser,
+  addTopic: {
+    screen: addTopic,
     navigationOptions: {
-      title: 'Add Topic',
+      title: 'Add New Topic',
       headerStyle: { backgroundColor: '#3a59b7' },
       headerTintColor: '#ffffff',
     },
   },
 
-  List: {
-    screen: ListUser,
+  topicDescription: {
+    screen: topicDescription,
     navigationOptions: {
-      title: 'List User',
+      title: 'Description',
       headerStyle: { backgroundColor: '#3a59b7' },
       headerTintColor: '#ffffff',
     },

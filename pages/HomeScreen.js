@@ -37,11 +37,11 @@ export default class HomeScreen extends React.Component {
         <Mytext text="RealM Example" />
         <Mybutton
           title="Add new topic"
-          customClick={() => this.props.navigation.navigate('Register')}
+          customClick={() => this.props.navigation.navigate('addTopic')}
         />
         <Mybutton
           title="View All"
-          customClick={() => this.props.navigation.navigate('ViewAll')}
+          customClick={() => this.props.navigation.navigate('viewTopic')}
         />
       </View>
     );

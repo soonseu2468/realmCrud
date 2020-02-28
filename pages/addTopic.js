@@ -8,7 +8,7 @@ import Mybutton from './components/Mybutton';
 
 let realm;
 
-export default class RegisterUser extends React.Component {
+export default class addTopic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,56 +27,57 @@ export default class RegisterUser extends React.Component {
     const { subtitle } = this.state;
     const { description } = this.state;
     const { image } = this.state;
-    if (title) {
-      if (subtitle) {
-        if (description) {
-          if (image) {
-            realm.write(() => {
-              var ID =
-                realm.objects('topic_details').sorted('topic_id', true).length > 0
-                  ? realm.objects('topic_details').sorted('topic_id', true)[0]
-                    .topic_id + 1
-                  : 1;
-              realm.create('topic_details', {
-                title_id: ID,
-                title: that.state.title,
-                subtitle: that.state.subtitle,
-                description: that.state.description,
-                image: that.state.image.uri,
-              });
-              console.log(this.state.image.uri)
-              Alert.alert(
-                'Success',
-                'You are registered successfully',
-                [
-                  {
-                    text: 'Ok',
-                    onPress: () => that.props.navigation.navigate('HomeScreen'),
-                  },
-                ],
-                { cancelable: false }
-              );
-            });
-          } else {
-            alert('Please fill Image')
-          }
-        } else {
-          alert('Please fill Description');
-        }
-      } else {
-        alert('Please fill Subtitle');
-      }
-    } else {
-      alert('Please fill Title');
+
+    let errorMessage = "Please fill in";
+    //blank input checking
+    if (title === '') {
+      alert(errorMessage + "\t" + "title")
+    }
+    else if (subtitle === '') {
+      alert(errorMessage + "\t" + "subtitle")
+    }
+    else if (description === '') {
+      alert(errorMessage + "\t" + "description")
+    }
+    else if (image === '') {
+      alert(errorMessage + "\t" + "image")
+    }
+    //store into realm database
+    else {
+      realm.write(() => {
+        var ID =
+          realm.objects('topic_details').sorted('topic_id', true).length > 0
+            ? realm.objects('topic_details').sorted('topic_id', true)[0]
+              .topic_id + 1
+            : 1;
+        realm.create('topic_details', {
+          topic_id: ID,
+          title: that.state.title,
+          subtitle: that.state.subtitle,
+          description: that.state.description,
+          image: that.state.image.uri,
+        });
+        console.log(this.state.image.uri)
+        //Stored successful
+        Alert.alert(
+          'Success',
+          'You are registered successfully',
+          [
+            {
+              text: 'Ok',
+              onPress: () => that.props.navigation.navigate('homeScreen'),
+            },
+          ],
+          { cancelable: false }
+        );
+      });
+
     }
   };
-
+  //Image Picker
   chooseFile = () => {
     var options = {
       title: 'Select Image',
-      customButtons: [
-        { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
-      ],
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -109,14 +110,14 @@ export default class RegisterUser extends React.Component {
         <ScrollView keyboardShouldPersistTaps="handled">
           <KeyboardAvoidingView
             behavior="padding"
-            style={{ flex: 1, justifyContent: 'space-between' }}>
+            style={{ flex: 1 }}>
             <TextInput
-              style={{ fontSize: 40, margin: 10 }}
+              style={{ fontSize: 40, margin: 10,borderBottomColor:'gray',borderBottomWidth:1 }}
               placeholder="Title"
               onChangeText={title => this.setState({ title })}
             />
             <TextInput
-              style={{ fontSize: 30, flex: 1, margin: 10 }}
+              style={{ fontSize: 30, flex: 1, margin: 10 ,borderColor:'gray',borderWidth:1}}
               placeholder="Subtitle"
               onChangeText={subtitle => this.setState({ subtitle })}
               numberOfLines={3}
@@ -128,7 +129,7 @@ export default class RegisterUser extends React.Component {
               maxLength={225}
               numberOfLines={5}
               multiline={true}
-              style={{ textAlignVertical: 'top', fontSize: 25, margin: 10 }}
+              style={{ textAlignVertical: 'top', fontSize: 25, margin: 10,borderColor:'gray',borderWidth:1 }}
             />
             <Image
               source={{
@@ -150,4 +151,5 @@ export default class RegisterUser extends React.Component {
     );
   }
 }
+
 
