@@ -7,22 +7,30 @@ import 'react-native-gesture-handler';
 let realm;
 
 export default class viewTopic extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {
-      FlatListItems: [],
-    };
-    realm = new Realm({ path: 'UserDatabase.realm' });
-    var topic_details = realm.objects('topic_details');
-    this.state = {
-      FlatListItems: topic_details,
-    };
+    this.state ={ isLoading: true}
   }
-  ListViewItemSeparator = () => {
-    return (
-      <View style={{ height: 0.5, width: '100%', backgroundColor: '#000' }} />
-    );
-  };
+
+  componentDidMount(){
+    return fetch('https://reactnative.dev/movies.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.movies,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+
 
   _onPressButton(title, subtitle, description, topic_id, image) {
     this.props.navigation.navigate('topicDescription', {
