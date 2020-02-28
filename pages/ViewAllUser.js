@@ -1,13 +1,11 @@
 /*Screen to view all the user*/
 import React from 'react';
-import { FlatList, Text, View, Image,TouchableOpacity ,Alert} from 'react-native';
+import { FlatList, Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Realm from 'realm';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 let realm;
- 
+
 export default class ViewAllUser extends React.Component {
   constructor(props) {
     super(props);
@@ -15,10 +13,11 @@ export default class ViewAllUser extends React.Component {
       FlatListItems: [],
     };
     realm = new Realm({ path: 'UserDatabase.realm' });
-    var user_details = realm.objects('user_details');
+    var topic_details = realm.objects('topic_details');
     this.state = {
-      FlatListItems: user_details,
+      FlatListItems: topic_details,
     };
+    //console.log(user_details)
   }
   ListViewItemSeparator = () => {
     return (
@@ -26,46 +25,78 @@ export default class ViewAllUser extends React.Component {
     );
   };
 
-  _onPressButton(user_name,user_address,user_contact,user_id) {
+  _onPressButton(title, subtitle, description, topic_id, image) {
     //  Alert.alert((user_name),user_address);
-    this.props.navigation.navigate('List',{ 
- 
-      Name : user_name,
-      Address : user_address,
-      Contact : user_contact,
-      Id : user_id,
- 
-    }) 
-    console.log(`${user_address} ${user_contact}is being onclick`)
+    this.props.navigation.navigate('List', {
+
+      Title: title,
+      Subtitle: subtitle,
+      Description: description,
+      Id: topic_id,
+      Image: image
+
+    })
+    console.log(`${Image} is being onclick`)
   }
 
   render() {
     return (
       <View>
-        
+
         <FlatList
           data={this.state.FlatListItems}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={this._onPressButton.bind(this,item.user_name,item.user_address,item.user_contact,item.user_id)}
+            <TouchableOpacity onPress={this._onPressButton.bind(this, item.title, item.subtitle, item.description, item.topic_id, item.image)}
             >
-            <View style={{ backgroundColor: 'white', padding: 20 }}>
-              <Text>Id: {item.user_id}</Text>
-              <Text>Name: {item.user_name}</Text>
-              <Text>Contact: {item.user_contact}</Text>
-              <Text>Address: {item.user_address}</Text>
-              <Text>Image: {item.user_image}</Text>
-
-              <View>
-                    <Image style={{ width: 100, height: 100 }} backgroundColor={'black'} source={{ uri:item.user_image}} />
+              <View style={{ flexDirection: "row" }}>
+                <Image
+                  source={{ uri: item.image }}
+                  style={{ width: 150, height: 150 }}
+                />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.title}>
+                    Title:{item.title}
+                  </Text>
+                  <Text numberOfLines={3} style={styles.sub}>
+                    Subtitle:{item.subtitle}
+                  </Text>
+                </View>
               </View>
-            </View>
+              <Text numberOfLines={2} style={styles.des}>
+                Description:{item.description}
+              </Text>
             </TouchableOpacity>
           )}
         />
-        
+
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  sub: {
+    fontSize: 25,
+    color: 'red',
+    margin: 5,
+    flex: 1
+
+  },
+  title: {
+    color: 'blue',
+    fontSize: 40,
+    fontWeight: 'bold',
+    margin: 5,
+    flex: 1
+
+  },
+  des: {
+    fontSize: 20,
+    color: 'orange',
+    flex: 1,
+    margin: 5
+
+  },
+
+})

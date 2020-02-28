@@ -5,7 +5,7 @@ import Mybutton from './components/Mybutton';
 import Mytext from './components/Mytext';
 import Realm from 'realm';
 let realm;
- 
+
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -13,18 +13,19 @@ export default class HomeScreen extends React.Component {
       path: 'UserDatabase.realm',
       schema: [
         {
-          name: 'user_details',
+          name: 'topic_details',
           properties: {
-            user_id: { type: 'int', default: 0 },
-            user_name: 'string',
-            user_contact: 'string',
-            user_address: 'string',
+            topic_id: { type: 'int', default: 0 },
+            title: 'string',
+            subtitle: 'string',
+            description: 'string',
+            image: 'string'
           },
         },
       ],
     });
   }
- 
+
   render() {
     return (
       <View
@@ -35,24 +36,12 @@ export default class HomeScreen extends React.Component {
         }}>
         <Mytext text="RealM Example" />
         <Mybutton
-          title="Register"
+          title="Add new topic"
           customClick={() => this.props.navigation.navigate('Register')}
-        />
-        <Mybutton
-          title="Update"
-          customClick={() => this.props.navigation.navigate('Update')}
-        />
-        <Mybutton
-          title="View"
-          customClick={() => this.props.navigation.navigate('View')}
         />
         <Mybutton
           title="View All"
           customClick={() => this.props.navigation.navigate('ViewAll')}
-        />
-        <Mybutton
-          title="Delete"
-          customClick={() => this.props.navigation.navigate('Delete')}
         />
       </View>
     );
