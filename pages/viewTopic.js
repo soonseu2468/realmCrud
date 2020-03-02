@@ -1,27 +1,23 @@
-/*Screen to view all the user*/
 import React from 'react';
-import { FlatList, Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import Realm from 'realm';
-import 'react-native-gesture-handler';
+import { FlatList, ActivityIndicator, Text, View, StyleSheet, TouchableOpacity, Image, TextInput  } from 'react-native';
 
-let realm;
+export default class FetchExample extends React.Component {
 
-export default class viewTopic extends React.Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: true}
   }
 
   componentDidMount(){
-    return fetch('https://reactnative.dev/movies.json')
+    return fetch('http://www.omdbapi.com/?apikey=693c84e5&s=zoo')
       .then((response) => response.json())
       .then((responseJson) => {
 
         this.setState({
           isLoading: false,
-          dataSource: responseJson.movies,
+          dataSource: responseJson.Search,
         }, function(){
-
+          this.arrayholder = responseJson.Search;
         });
 
       })
@@ -30,48 +26,84 @@ export default class viewTopic extends React.Component {
       });
   }
 
+  ListViewItemSeparator = () => {
+    return (
+      <View style={{ height: 0.5, width: '100%', backgroundColor: '#000',margin:5 }} />
+    );
+  };
 
-
-  _onPressButton(title, subtitle, description, topic_id, image) {
+  _onPressButton(Title, Year, Type, Poster ,imdbID) {
     this.props.navigation.navigate('topicDescription', {
 
-      Title: title,
-      Subtitle: subtitle,
-      Description: description,
-      Id: topic_id,
-      Image: image
-
+      movieTitle: Title,
+      movieYear: Year,
+      movieType: Type,
+      movieId: imdbID,
+      moviePoster: Poster,
     })
-    console.log(`${Image} is being onclick`)
+    console.log(imdbID,"has been click")
+  };
+
+  SearchFilterFunction(text) {
+    //passing the inserted text in textinput
+    const newData = this.arrayholder.filter(function(item) {
+      //applying filter for the inserted text in search bar
+      const itemData = item.Title ? item.Title.toUpperCase() : ''.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      //setting the filtered newData on datasource
+      //After setting the data it will automatically re-render the view
+      dataSource: newData,
+      text: text,
+    });
   }
+  
 
-  render() {
-    return (
+
+  render(){
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
       <View>
-
+         <TextInput
+          style={styles.textInputStyle}
+          onChangeText={text => this.SearchFilterFunction(text)}
+          value={this.state.text}
+          underlineColorAndroid="transparent"
+          placeholder="Search Here"
+        />
         <FlatList
-          data={this.state.FlatListItems}
+          data={this.state.dataSource}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={this._onPressButton.bind(this, item.title, item.subtitle, item.description, item.topic_id, item.image)}
+            <TouchableOpacity onPress={this._onPressButton.bind(this, item.Title, item.Year, item.Type, item.Poster, item.imdbID)}
             >
               <View style={{ flexDirection: "row" }}>
                 <Image
-                  source={{ uri: item.image }}
-                  style={{ width: 150, height: 150 }}
+                  source={{ uri: item.Poster }}
+                  style={{ width: 150, height: 150 , borderRadius: 50 / 5 }}
                 />
                 <View style={{ flex: 1 }}>
                   <Text style={styles.title}>
-                    Title:{item.title}
+                    {item.Title}
                   </Text>
                   <Text numberOfLines={3} style={styles.sub}>
-                    Subtitle:{item.subtitle}
+                    Year:{item.Year}
                   </Text>
                 </View>
               </View>
               <Text numberOfLines={2} style={styles.des}>
-                Description:{item.description}
+                Type:{item.Type}
               </Text>
             </TouchableOpacity>
           )}
@@ -91,7 +123,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'blue',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
     margin: 5,
     flex: 1
@@ -103,6 +135,14 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5
 
+  },
+  textInputStyle: {
+    height: 40,
+    borderWidth: 1,
+    paddingLeft: 10,
+    borderColor: '#009688',
+    backgroundColor: '#FFFFFF',
+    margin:5
   },
 
 })

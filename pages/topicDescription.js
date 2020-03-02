@@ -18,11 +18,12 @@ export default class topicDescription extends React.Component {
     componentDidMount() {
         // Received Details Sent From Previous Activity and Set Into State.
         this.setState({
-            topicId: this.props.navigation.state.params.topic_id,
-            topicTitle: this.props.navigation.state.params.Title,
-            topicSubtitle: this.props.navigation.state.params.Subtitle,
-            topicDescription: this.props.navigation.state.params.Description,
-            topicImage: this.props.navigation.state.params.Image
+            moviePoster: this.props.navigation.state.params.moviePoster,
+            movieId: this.props.navigation.state.params.movieId,
+            movieTitle: this.props.navigation.state.params.movieTitle,
+            movieYear: this.props.navigation.state.params.movieYear,
+            movieType: this.props.navigation.state.params.movieType,
+            
         })
     }
     render() {
@@ -31,14 +32,14 @@ export default class topicDescription extends React.Component {
                 <ScrollView>
                     <View style={{ flexDirection: 'row', height: 200, margin: 10, alignItems: 'stretch', }}>
                         <Image
-                            source={{ uri: this.state.topicImage }}
-                            style={{ width: 250, height: 220 }} />
+                            source={{ uri: this.state.moviePoster }}
+                            style={{ width: 370, height: 220 }} />
                     </View>
-                    <Text style={styles.destitle}>Title: {this.state.topicTitle}</Text>
+                    <Text style={styles.destitle}>{this.state.movieTitle}</Text>
                     <View style={{ margin: 10 }}>
-                        <Text style={styles.dessub}>Subtitle: {this.state.topicSubtitle}</Text>
+                        <Text style={styles.dessub}>Year: {this.state.movieYear}</Text>
                     </View>
-                    <Text style={styles.desdes}>Description: {this.state.topicDescription}</Text>
+                    <Text style={styles.desdes}>Type: {this.state.movieType}</Text>
                 </ScrollView>
             </View>
         );
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     },
     destitle: {
         color: 'orange',
-        fontSize: 50,
+        fontSize: 40,
         fontWeight: 'bold',
         margin: 10
     },
