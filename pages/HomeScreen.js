@@ -40,9 +40,20 @@ export default class HomeScreen extends React.Component {
           customClick={() => this.props.navigation.navigate('addTopic')}
         />
         <Mybutton
-          title="View All"
-          customClick={() => this.props.navigation.navigate('viewTopic')}
+          title="View Realm"
+          customClick={() => this.props.navigation.navigate('viewRealm')}
         />
+        <Mytext text="Fetch Api Example" />
+        <Mybutton
+          title="View API"
+          customClick={() => this.props.navigation.navigate('Fetch')}
+        />
+         <Mytext text="Redux Example" />
+        <Mybutton
+          title="Redux"
+          customClick={() => this.props.navigation.navigate('Redux')}
+        />
+
       </View>
     );
   }

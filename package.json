@@ -24,7 +24,9 @@
     "react-native-screens": "^2.0.0-beta.13",
     "react-navigation": "^4.2.1",
     "react-navigation-stack": "^2.2.1",
-    "realm": "^3.6.4"
+    "react-redux": "^7.2.0",
+    "realm": "^3.6.4",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",

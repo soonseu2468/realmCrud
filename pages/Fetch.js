@@ -9,7 +9,7 @@ export default class FetchExample extends React.Component {
   }
 
   componentDidMount(){
-    return fetch('http://www.omdbapi.com/?apikey=693c84e5&s=zoo')
+    return fetch('http://www.omdbapi.com/?apikey=693c84e5&s=harry')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -67,7 +67,7 @@ export default class FetchExample extends React.Component {
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
+        <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )
     }
@@ -79,7 +79,8 @@ export default class FetchExample extends React.Component {
           onChangeText={text => this.SearchFilterFunction(text)}
           value={this.state.text}
           underlineColorAndroid="transparent"
-          placeholder="Search Here"
+          placeholder="Search Here By Title"
+          autoFocus
         />
         <FlatList
           data={this.state.dataSource}
@@ -91,13 +92,13 @@ export default class FetchExample extends React.Component {
               <View style={{ flexDirection: "row" }}>
                 <Image
                   source={{ uri: item.Poster }}
-                  style={{ width: 150, height: 150 , borderRadius: 50 / 5 }}
+                  style={{ width: 150, height: 150 , borderRadius: 50 / 3, margin:5 }}
                 />
                 <View style={{ flex: 1 }}>
-                  <Text style={styles.title}>
+                  <Text numberOfLines={3} style={styles.title}>
                     {item.Title}
                   </Text>
-                  <Text numberOfLines={3} style={styles.sub}>
+                  <Text numberOfLines={1} style={styles.sub}>
                     Year:{item.Year}
                   </Text>
                 </View>
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     paddingLeft: 10,
-    borderColor: '#009688',
+    borderColor: '#c1ecf4',
     backgroundColor: '#FFFFFF',
     margin:5
   },

@@ -7,23 +7,36 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import homeScreen from './pages/homeScreen';
 import addTopic from './pages/addTopic';
-import viewTopic from './pages/viewTopic';
+import viewRealm from './pages/viewRealm';
+import viewTopic from './pages/Fetch';
+import realmDescription from './pages/realmDescription';
 import topicDescription from './pages/topicDescription';
+import Redux from './pages/Redux';
+
 
 const App = createStackNavigator({
   homeScreen: {
     screen: homeScreen,
     navigationOptions: {
-      title: 'HomeScreen',
+      title: 'Learning React-Native',
       headerStyle: { backgroundColor: '#3a59b7' },
       headerTintColor: '#ffffff',
     },
   },
 
-  viewTopic: {
+  Fetch: {
     screen: viewTopic,
     navigationOptions: {
-      title: 'View All User',
+      title: 'Fetch API from omdb',
+      headerStyle: { backgroundColor: '#3a59b7' },
+      headerTintColor: '#ffffff',
+    },
+  },
+
+  viewRealm: {
+    screen: viewRealm,
+    navigationOptions: {
+      title: 'View Realm data',
       headerStyle: { backgroundColor: '#3a59b7' },
       headerTintColor: '#ffffff',
     },
@@ -46,5 +59,24 @@ const App = createStackNavigator({
       headerTintColor: '#ffffff',
     },
   },
+
+  realmDescription: {
+    screen: realmDescription,
+    navigationOptions: {
+      title: 'Description',
+      headerStyle: { backgroundColor: '#3a59b7' },
+      headerTintColor: '#ffffff',
+    },
+  },
+
+  Redux: {
+    screen: Redux,
+    navigationOptions: {
+      title: 'Redux',
+      headerStyle: { backgroundColor: '#3a59b7' },
+      headerTintColor: '#ffffff',
+    },
+  },
+
 });
 export default createAppContainer(App);

@@ -1,115 +1,36 @@
 {
-    "response_code": 0,
-    "results": [
+    "Title": "The Ten Commandments",
+    "Year": "1956",
+    "Rated": "G",
+    "Released": "05 Oct 1956",
+    "Runtime": "220 min",
+    "Genre": "Adventure, Drama",
+    "Director": "Cecil B. DeMille",
+    "Writer": "Dorothy Clarke Wilson (this work contains material from the book \"Prince of Egypt\"), J.H. Ingraham (this work contains material from the book \"Pillar of Fire\"), A.E. Southon (this work contains material from the book \"On Eagle's Wing\"), Æneas MacKenzie (written for the screen by), Jesse Lasky Jr. (written for the screen by), Jack Gariss (written for the screen by), Fredric M. Frank (written for the screen by)",
+    "Actors": "Charlton Heston, Yul Brynner, Anne Baxter, Edward G. Robinson",
+    "Plot": "Moses (Charlton Heston), an Egyptian Prince, learns of his true heritage as a Hebrew and his divine mission as the deliverer of his people.",
+    "Language": "English",
+    "Country": "USA",
+    "Awards": "Won 1 Oscar. Another 8 wins & 10 nominations.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BODcxYjUxZDgtYTQ5Zi00YmQ1LWJmZmItODZkOTYyNDhiNWM3XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_SX300.jpg",
+    "Ratings": [
         {
-            "category": "Science: Computers",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "When Gmail first launched, how much storage did it provide for your email?",
-            "correct_answer": "1GB",
-            "incorrect_answers": [
-                "512MB",
-                "5GB",
-                "Unlimited"
-            ]
+            "Source": "Internet Movie Database",
+            "Value": "7.8/10"
         },
         {
-            "category": "Science: Computers",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "The programming language &#039;Swift&#039; was created to replace what other programming language?",
-            "correct_answer": "Objective-C",
-            "incorrect_answers": [
-                "C#",
-                "Ruby",
-                "C++"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "boolean",
-            "difficulty": "easy",
-            "question": "Pointers were not used in the original C programming language; they were added later on in C++.",
-            "correct_answer": "False",
-            "incorrect_answers": [
-                "True"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "boolean",
-            "difficulty": "easy",
-            "question": "RAM stands for Random Access Memory.",
-            "correct_answer": "True",
-            "incorrect_answers": [
-                "False"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "boolean",
-            "difficulty": "easy",
-            "question": "&quot;HTML&quot; stands for Hypertext Markup Language.",
-            "correct_answer": "True",
-            "incorrect_answers": [
-                "False"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "boolean",
-            "difficulty": "easy",
-            "question": "The NVidia GTX 1080 gets its name because it can only render at a 1920x1080 screen resolution.",
-            "correct_answer": "False",
-            "incorrect_answers": [
-                "True"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "boolean",
-            "difficulty": "easy",
-            "question": "Linux was first created as an alternative to Windows XP.",
-            "correct_answer": "False",
-            "incorrect_answers": [
-                "True"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "The C programming language was created by this American computer scientist. ",
-            "correct_answer": "Dennis Ritchie",
-            "incorrect_answers": [
-                "Tim Berners Lee",
-                "al-Khw\u0101rizm\u012b",
-                "Willis Ware"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "How long is an IPv6 address?",
-            "correct_answer": "128 bits",
-            "incorrect_answers": [
-                "32 bits",
-                "64 bits",
-                "128 bytes"
-            ]
-        },
-        {
-            "category": "Science: Computers",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "In computing, what does MIDI stand for?",
-            "correct_answer": "Musical Instrument Digital Interface",
-            "incorrect_answers": [
-                "Musical Interface of Digital Instruments",
-                "Modular Interface of Digital Instruments",
-                "Musical Instrument Data Interface"
-            ]
+            "Source": "Rotten Tomatoes",
+            "Value": "94%"
         }
-    ]
+    ],
+    "Metascore": "N/A",
+    "imdbRating": "7.8",
+    "imdbVotes": "59,347",
+    "imdbID": "tt0049833",
+    "Type": "movie",
+    "DVD": "30 Mar 1999",
+    "BoxOffice": "N/A",
+    "Production": "Paramount Pictures",
+    "Website": "N/A",
+    "Response": "True"
 }
