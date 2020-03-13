@@ -7,11 +7,12 @@ export default function MovieRow({ movie }) {
             <View style={styles.container}>
                 <Image source={{ uri: movie.Poster }} style={styles.poster} />
                 <Text style={styles.title}>{movie.Title}</Text>
+                <Text style={styles.title}>{movie.imdbID}</Text>
                 <View style={styles.iconContainer}>
                     <Icon name="heart-o" size={25} color='red' />
                 </View>
             </View>
-        </TouchableOpacity>
+        </TouchableOpacity> 
     )
 }
 

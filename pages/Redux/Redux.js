@@ -4,11 +4,11 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import mockMovies from './movieHome';
 
-function addMovies(state,{movies}){
-  return movies.map(movie=>({
-    Title:movie.Title,
-    Poster:movie.Poster,
-    imdbID:movie.imdbID,
+function addMovies(state, { movies }) {
+  return movies.map(movie => ({
+    Title: movie.Title,
+    Poster: movie.Poster,
+    imdbID: movie.imdbID,
   }))
 }
 function movieReducer(state = mockMovies.Search, action) {
@@ -17,7 +17,7 @@ function movieReducer(state = mockMovies.Search, action) {
       return addMovies(state, action.payload)
     default:
       return state
-  }
+  } 
 }
 const store = createStore(movieReducer)
 

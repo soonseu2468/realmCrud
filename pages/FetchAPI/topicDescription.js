@@ -22,14 +22,14 @@ export default class topicDescription extends React.Component {
             movieTitle: this.props.navigation.state.params.movieTitle,
             movieYear: this.props.navigation.state.params.movieYear,
             movieType: this.props.navigation.state.params.movieType,
-            
+
         })
     }
     render() {
         return (
             <View>
                 <ScrollView>
-                    <View style={{ flexDirection: 'row', margin: 10, alignItems: 'stretch',flex:1 }}>
+                    <View style={{ flexDirection: 'row', margin: 10, alignItems: 'stretch', flex: 1 }}>
                         <Image
                             source={{ uri: this.state.moviePoster }}
                             style={styles.img} />
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
         margin: 10
     },
     img: {
-        flex:1,
-        height:500,
-        borderRadius:400/20
+        flex: 1,
+        height: 500,
+        borderRadius: 400 / 20
     },
 
 

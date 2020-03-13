@@ -6,13 +6,12 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import homeScreen from './pages/homeScreen';
-import addTopic from './pages/addTopic';
-import viewRealm from './pages/viewRealm';
-import viewTopic from './pages/Fetch';
-import realmDescription from './pages/realmDescription';
-import topicDescription from './pages/topicDescription';
-import Redux from './pages/Redux';
-
+import addTopic from './pages/Realm/addTopic';
+import viewRealm from './pages/Realm/viewRealm';
+import viewTopic from './pages/FetchAPI/Fetch';
+import realmDescription from './pages/Realm/realmDescription';
+import topicDescription from './pages/FetchAPI/topicDescription';
+import Redux from './pages/Redux/Redux';
 
 const App = createStackNavigator({
   homeScreen: {

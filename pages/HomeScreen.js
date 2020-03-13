@@ -35,20 +35,25 @@ export default class HomeScreen extends React.Component {
           flexDirection: 'column',
         }}>
         <Mytext text="RealM Example" />
+
         <Mybutton
           title="Add new topic"
           customClick={() => this.props.navigation.navigate('addTopic')}
         />
+
         <Mybutton
           title="View Realm"
           customClick={() => this.props.navigation.navigate('viewRealm')}
         />
+
         <Mytext text="Fetch Api Example" />
+
         <Mybutton
           title="View API"
           customClick={() => this.props.navigation.navigate('Fetch')}
         />
-         <Mytext text="Redux Example" />
+        <Mytext text="Redux Example" />
+
         <Mybutton
           title="Redux"
           customClick={() => this.props.navigation.navigate('Redux')}

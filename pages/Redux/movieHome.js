@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import MovieRow from '../pages/movieRow'
+import { View, Text, FlatList, StyleSheet, TextInput } from 'react-native'
+import MovieRow from './movieRow'
 import { connect } from 'react-redux'
 
 class movieHome extends Component {
@@ -9,9 +9,11 @@ class movieHome extends Component {
         super(props)
     }
 
-    async componentDidMount() {
+
+    async SearchFilterFunction(text) {
+        console.log(text)
         const { addMovies } = this.props
-        const response = await fetch('http://www.omdbapi.com/?apikey=693c84e5&s=batman')
+        const response = await fetch('http://www.omdbapi.com/?apikey=693c84e5&s=' + text + '')
         const data = await response.json()
         addMovies(data.Search)
 
@@ -21,6 +23,11 @@ class movieHome extends Component {
         const { movies } = this.props
         return (
             <View style={styles.container}>
+                <TextInput
+                    placeholder='Search here'
+                    style={{ borderWidth: 0.5, margin: 5 }}
+                    onChangeText={text => this.SearchFilterFunction(text)}
+                />
                 <FlatList
                     data={movies}
                     renderItem={({ item: movie }) => <MovieRow movie={movie} />}
@@ -52,7 +59,5 @@ function mapDispatchToProps(dispatch) {
         )
     }
 }
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(movieHome)
+export default connect(mapStateToProps, mapDispatchToProps)
+    (movieHome)

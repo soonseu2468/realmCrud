@@ -1,38 +1,38 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View, StyleSheet, TouchableOpacity, Image, TextInput  } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 
 export default class FetchExample extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={ isLoading: true}
+    this.state = { isLoading: true }
   }
 
-  componentDidMount(){
-    return fetch('http://www.omdbapi.com/?apikey=693c84e5&s=harry')
+  SearchFilterFunction(text) {
+    return fetch('http://www.omdbapi.com/?apikey=693c84e5&s=' + text + '')
       .then((response) => response.json())
       .then((responseJson) => {
 
         this.setState({
           isLoading: false,
           dataSource: responseJson.Search,
-        }, function(){
+        }, function () {
           this.arrayholder = responseJson.Search;
         });
 
       })
-      .catch((error) =>{
+      .catch((error) => {
         console.error(error);
       });
   }
 
   ListViewItemSeparator = () => {
     return (
-      <View style={{ height: 0.5, width: '100%', backgroundColor: '#000',margin:5 }} />
+      <View style={{ height: 0.5, width: '100%', backgroundColor: '#000', margin: 5 }} />
     );
   };
 
-  _onPressButton(Title, Year, Type, Poster ,imdbID) {
+  _onPressButton(Title, Year, Type, Poster, imdbID) {
     this.props.navigation.navigate('topicDescription', {
 
       movieTitle: Title,
@@ -41,40 +41,49 @@ export default class FetchExample extends React.Component {
       movieId: imdbID,
       moviePoster: Poster,
     })
-    console.log(imdbID,"has been click")
+    console.log(imdbID, "has been click")
   };
 
-  SearchFilterFunction(text) {
-    //passing the inserted text in textinput
-    const newData = this.arrayholder.filter(function(item) {
-      //applying filter for the inserted text in search bar
-      const itemData = item.Title ? item.Title.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-    this.setState({
-      //setting the filtered newData on datasource
-      //After setting the data it will automatically re-render the view
-      dataSource: newData,
-      text: text,
-    });
-  }
-  
+
+  // SearchFilterFunction(text) {
+  //   //passing the inserted text in textinput
+  //   const newData = this.arrayholder.filter(function(item) {
+  //     //applying filter for the inserted text in search bar
+  //     const itemData = item.Title ? item.Title.toUpperCase() : ''.toUpperCase();
+  //     const textData = text.toUpperCase();
+  //     return itemData.indexOf(textData) > -1;
+  //   });
+  //   this.setState({
+  //     //setting the filtered newData on datasource
+  //     //After setting the data it will automatically re-render the view
+  //     dataSource: newData,
+  //     text: text,
+  //   });
+  // }
 
 
-  render(){
 
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-        <ActivityIndicator size="large" color="#0000ff" />
+  render() {
+
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1 }}>
+          <TextInput
+            style={styles.textInputStyle}
+            onChangeText={text => this.SearchFilterFunction(text)}
+            value={this.state.text}
+            underlineColorAndroid="transparent"
+            placeholder="Search Here By Title"
+            autoFocus
+          />
+          <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )
     }
 
-    return(
+    return (
       <View>
-         <TextInput
+        <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
           value={this.state.text}
@@ -92,7 +101,7 @@ export default class FetchExample extends React.Component {
               <View style={{ flexDirection: "row" }}>
                 <Image
                   source={{ uri: item.Poster }}
-                  style={{ width: 150, height: 150 , borderRadius: 50 / 3, margin:5 }}
+                  style={{ width: 150, height: 150, borderRadius: 50 / 3, margin: 5 }}
                 />
                 <View style={{ flex: 1 }}>
                   <Text numberOfLines={3} style={styles.title}>
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderColor: '#c1ecf4',
     backgroundColor: '#FFFFFF',
-    margin:5
+    margin: 5
   },
 
 })

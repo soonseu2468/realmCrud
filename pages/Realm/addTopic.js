@@ -4,7 +4,7 @@ import { View, ScrollView, Image, KeyboardAvoidingView, Alert } from 'react-nati
 import Realm from 'realm';
 import { TextInput } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker';
-import Mybutton from './components/Mybutton';
+import Mybutton from '../components/Mybutton';
 
 let realm;
 
@@ -112,12 +112,12 @@ export default class addTopic extends React.Component {
             behavior="padding"
             style={{ flex: 1 }}>
             <TextInput
-              style={{ fontSize: 40, margin: 10,borderBottomColor:'gray',borderBottomWidth:1 }}
+              style={{ fontSize: 40, margin: 10, borderBottomColor: 'gray', borderBottomWidth: 1 }}
               placeholder="Title"
               onChangeText={title => this.setState({ title })}
             />
             <TextInput
-              style={{ fontSize: 30, flex: 1, margin: 10 ,borderColor:'gray',borderWidth:1}}
+              style={{ fontSize: 30, flex: 1, margin: 10, borderColor: 'gray', borderWidth: 1 }}
               placeholder="Subtitle"
               onChangeText={subtitle => this.setState({ subtitle })}
               numberOfLines={3}
@@ -129,7 +129,7 @@ export default class addTopic extends React.Component {
               maxLength={225}
               numberOfLines={5}
               multiline={true}
-              style={{ textAlignVertical: 'top', fontSize: 25, margin: 10,borderColor:'gray',borderWidth:1 }}
+              style={{ textAlignVertical: 'top', fontSize: 25, margin: 10, borderColor: 'gray', borderWidth: 1 }}
             />
             <Image
               source={{
